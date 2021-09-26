@@ -10,12 +10,12 @@ import java.util.Queue;
 public class BfIterator<T extends Node> implements Iterator<Node> {
     private final Queue<Node> queue = new LinkedList<>();
     private final boolean[] visited;
-    public static int[] indexes;
+    public static int[] indices;
 
     public BfIterator(Graph graph, Node startNode) {
         this.visited = new boolean[graph.getNodeCount()];
         this.queue.add(startNode);
-        indexes = new int[graph.getNodeCount()];
+        indices = new int[graph.getNodeCount()];
     }
 
     @Override
@@ -32,11 +32,11 @@ public class BfIterator<T extends Node> implements Iterator<Node> {
     public Node next() {
         Node currentNode = this.queue.remove();
         visited[currentNode.getIndex()] = true;
-        int currentNodeIdx = indexes[currentNode.getIndex()];
+        int currentNodeIdx = indices[currentNode.getIndex()];
 
         currentNode.neighborNodes().forEach(neighborNode -> {
             if (!visited[neighborNode.getIndex()] && !queue.contains(neighborNode)) {
-                indexes[neighborNode.getIndex()] = currentNodeIdx + 1;
+                indices[neighborNode.getIndex()] = currentNodeIdx + 1;
                 queue.add(neighborNode);
             }
         });
