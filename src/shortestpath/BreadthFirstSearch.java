@@ -49,7 +49,7 @@ public class BreadthFirstSearch {
 
         Node precedingNode = node.neighborNodes()
                 .filter(neighborNode ->
-                        BfIterator.indexes[neighborNode.getIndex()] == BfIterator.indexes[node.getIndex()] - 1)
+                        BfIterator.indices[neighborNode.getIndex()] == BfIterator.indices[node.getIndex()] - 1)
                 .findFirst()
                 .orElse(null);
 
