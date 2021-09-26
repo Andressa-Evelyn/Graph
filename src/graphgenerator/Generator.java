@@ -18,6 +18,9 @@ import static minimalspanningtree.MstUtitlities.setEdgeWeight;
 import static org.graphstream.algorithm.Toolkit.randomNode;
 import static graphgenerator.GeneralGraphUtils.random;
 
+/**
+* A generator to either create graphs from files or randomly
+*/
 public class Generator {
 
     public static final String styleSheet = "url(file:resources/stylesheet.css)";
@@ -175,4 +178,19 @@ public class Generator {
         return randomEulerianGraph(edgeId, graph, list);
     }
 
+<<<<<<< HEAD
+=======
+        /**
+         * Creates a graph object with all necessary properties to display it later on. 
+         * @param id
+         * @return graph
+         */
+        public static Graph newGraph(String id) {
+            Graph graph = new SingleGraph(id);
+            graph.setStrict(false);
+            graph.setAutoCreate(true);                            
+            graph.setAttribute("ui.stylesheet.css", styleSheet);  // Apply style sheet for visualisation
+            return graph;
+        }
+>>>>>>> 2d747b318ce9cdbac921af634c25f855b9cda659
 }
