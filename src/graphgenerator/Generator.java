@@ -178,19 +178,4 @@ public class Generator {
         return randomEulerianGraph(edgeId, graph, list);
     }
 
-<<<<<<< HEAD
-=======
-        /**
-         * Creates a graph object with all necessary properties to display it later on. 
-         * @param id
-         * @return graph
-         */
-        public static Graph newGraph(String id) {
-            Graph graph = new SingleGraph(id);
-            graph.setStrict(false);
-            graph.setAutoCreate(true);                            
-            graph.setAttribute("ui.stylesheet.css", styleSheet);  // Apply style sheet for visualisation
-            return graph;
-        }
->>>>>>> 2d747b318ce9cdbac921af634c25f855b9cda659
 }
