@@ -1,0 +1,17 @@
+node {
+    size: 8px;
+    text-padding: 8px;
+    text-size: 16px;
+    text-color: black;
+    text-alignment: at-left;
+    z-index: 0;
+}
+
+edge {
+    fill-color: #222;
+}
+
+edge.highlight {
+    size: 3px;
+    fill-color: red;
+}
