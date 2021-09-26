@@ -59,7 +59,6 @@ public class Generator {
                 } else {
                     if (arc.equals("--")) {
                         graph.addEdge(edgeId, sourceId, targetId);
-                        System.out.println(edgeId);
                         setEdgeWeight(graph.getEdge(edgeId), weight);
                     } else if (arc.equals("->")) {
                         graph.addEdge(edgeId, sourceId, targetId, true);
