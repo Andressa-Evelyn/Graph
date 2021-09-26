@@ -2,7 +2,6 @@ package minimalspanningtree;
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
-import graphgenerator.Generator;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
@@ -12,8 +11,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static minimalspanningtree.MstUtitlities.getEdgeWeight;
-import static minimalspanningtree.MstUtitlities.isConnectedGraph;
+import static minimalspanningtree.MstUtitlities.*;
 
 public class Kruskal {
 
@@ -23,7 +21,7 @@ public class Kruskal {
 
     public Kruskal(Graph graph) {
         this.graph = graph;
-        this.mst = Generator.newGraph("K" + graph.getId());
+        this.mst = newGraph("K" + graph.getId());
     }
 
     /**

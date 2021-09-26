@@ -67,4 +67,17 @@ public class MstUtitlities {
         return count == nodeCount;
     }
 
+    /**
+     * Creates a graph object with all necessary properties to display it later on.
+     * @param id
+     * @return graph
+     */
+    public static Graph newGraph(String id) {
+        Graph graph = new SingleGraph(id);
+        graph.setStrict(false);
+        graph.setAutoCreate(true);
+        graph.setAttribute("ui.stylesheet.css", Generator.styleSheet);  // Apply style sheet for visualisation
+        return graph;
+    }
+
 }

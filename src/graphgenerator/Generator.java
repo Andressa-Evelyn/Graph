@@ -59,7 +59,6 @@ public class Generator {
                 } else {
                     if (arc.equals("--")) {
                         graph.addEdge(edgeId, sourceId, targetId);
-                        System.out.println(edgeId);
                         setEdgeWeight(graph.getEdge(edgeId), weight);
                     } else if (arc.equals("->")) {
                         graph.addEdge(edgeId, sourceId, targetId, true);
@@ -176,17 +175,4 @@ public class Generator {
         return randomEulerianGraph(edgeId, graph, list);
     }
 
-        /**
-         * Erstellt einen neuen leeren Graph mit der ID "id" und konfiguriert diesen.
-         *
-         * @param id
-         * @return
-         */
-        public static Graph newGraph(String id) {
-            Graph graph = new SingleGraph(id);
-            graph.setStrict(false);
-            graph.setAutoCreate(true);             // An edge can create its source and target node in graph
-            graph.setAttribute("ui.stylesheet.css", styleSheet);  // Apply style sheet for visualisation
-            return graph;
-        }
 }

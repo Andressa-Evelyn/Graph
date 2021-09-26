@@ -1,6 +1,5 @@
 package minimalspanningtree;
 
-import graphgenerator.Generator;
 import org.graphstream.algorithm.util.FibonacciHeap;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
@@ -17,7 +16,7 @@ public class Prim {
 
     public Prim(Graph graph) {
         this.graph = graph;
-        this.mst = Generator.newGraph("P" + graph.getId());
+        this.mst = newGraph("P" + graph.getId());
     }
 
     /**
