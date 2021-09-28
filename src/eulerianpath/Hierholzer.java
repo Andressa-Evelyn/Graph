@@ -39,7 +39,9 @@ public class Hierholzer {
         this.stack.add(neighborNode);
         Edge edge = node.getEdgeBetween(neighborNode);
         this.graph.removeEdge(edge);
-
+        // Push the startNode onto the stack if it is a neighbor of neighborNode.
+        // In this case the current cycle will be closed and the next node of the stack
+        // will be the startNode of the next cycle to explore
         if (neighborNode.neighborNodes().anyMatch(n -> n.equals(this.startNode))) {
             this.stack.add(this.startNode);
             graph.removeEdge(neighborNode.getEdgeBetween(this.startNode));
@@ -53,7 +55,7 @@ public class Hierholzer {
 
     /**
      * Removes all nodes having degree 0 and adds the edge between the
-     * respective Node and the upper Node to the stack.
+     * respective Node and the upper Node to the path.
      */
     private void addToPath() {
         while (this.stack.peek().getDegree() == 0 && this.stack.size() > 1) {
