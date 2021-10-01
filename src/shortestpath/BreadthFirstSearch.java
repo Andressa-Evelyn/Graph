@@ -44,7 +44,11 @@ public class BreadthFirstSearch {
      * @param node -> currently observed node
      */
     private void traceBack(Node node) {
-        if (node == null) return;
+        if (node == this.startNode) {
+            this.stack.push(node);
+            return;
+        }
+
         this.stack.push(node);
 
         Node precedingNode = node.neighborNodes()
