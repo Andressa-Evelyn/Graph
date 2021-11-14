@@ -25,7 +25,7 @@ public class Generator {
 
     public static final String styleSheet = "url(file:resources/stylesheet.css)";
     private static final Pattern ADJACENCY_PATTERN = Pattern.compile(
-            "^([a-zA-Z0-9]+)\\s*?(--|->)?\\s*?([a-zA-Z0-9]+)?(?:\\s*?(?::|\\()\\s*?([a-zA-Z0-9]+?)?)?\\)?;$"
+            "^([a-zA-Z0-9]+)\\s*?(--|->)?\\s*?([a-zA-Z0-9]+)?(?:\\s*?[:(]\\s*?([a-zA-Z0-9]+?)?)?\\)?;$"
     );
 
     /**

@@ -7,12 +7,12 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BfIterator<T extends Node> implements Iterator<Node> {
+public class BreadthFirstIterator<T extends Node> implements Iterator<Node> {
     private final Queue<Node> queue = new LinkedList<>();
     private final boolean[] visited;
     public static int[] indices;
 
-    public BfIterator(Graph graph, Node startNode) {
+    public BreadthFirstIterator(Graph graph, Node startNode) {
         this.visited = new boolean[graph.getNodeCount()];
         this.queue.add(startNode);
         indices = new int[graph.getNodeCount()];
