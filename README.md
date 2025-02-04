@@ -1,11 +1,14 @@
-# Graph Algorithms
+# GraphWorks
 
 ## Overview
 This project implements several fundamental graph algorithms, organized into three categories:
 
-- **Shortest Path:** Find the shortest path between two nodes in a graph using **Breadth-First Search (BFS)**.
-- **Minimum Spanning Tree:** Compute the minimal spanning tree of a graph using **Kruskal's** and **Prim's** algorithms.
-- **Eulerian Path:** Determine an Eulerian path in a graph using **Fleury's Algorithm** and **Hierholzer's Algorithm**.  
+1. **Shortest Path:**  
+  Find the shortest path between two nodes in a graph using **Breadth-First Search (BFS)**.
+2. **Minimum Spanning Tree:**  
+  Compute the minimal spanning tree of a graph using **Kruskal's** and **Prim's** algorithms.
+3. **Eulerian Path:**  
+  Determine an Eulerian path in a graph using **Fleury's Algorithm** and **Hierholzer's Algorithm**.  
   
 Additionally, this project allows for graph generation through two methods:
 1. **File-based input:** Load graphs from a file.
@@ -19,7 +22,7 @@ This project relies on the following libraries:
 - **GraphStream (version 2.0)** - For graph visualization, utilizing core, algorithm, and UI components.
 - **JUnit 4.13.1** - For unit testing and ensuring code reliability.
 
-## Setup Instructions
+## Setup Instructions 
 To set up the project:
 1. Download the required libraries:  
     - **algs4.jar:** [Download Link](https://algs4.cs.princeton.edu/home/)
