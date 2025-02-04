@@ -1,20 +1,36 @@
-# Graph Algorithms (Java)
+# Graph Algorithms
 
+## Overview
+This project implements several fundamental graph algorithms, organized into three categories:
 
-## General info
-This project contains five different algorithms seperated into three categories: 
-  1. Finding the shortest path from node a to b within a graph (Breadth First Search)
-  2. Calculating the minimal spanning tree of a graph (Kruskal & Prim)
-  3. calculating a eulerian path within a graph (Fleury & Hierholzer)
+- **Shortest Path:** Find the shortest path between two nodes in a graph using **Breadth-First Search (BFS)**.
+- **Minimum Spanning Tree:** Compute the minimal spanning tree of a graph using **Kruskal's** and **Prim's** algorithms.
+- **Eulerian Path:** Determine an Eulerian path in a graph using **Fleury's Algorithm** and **Hierholzer's Algorithm**.  
+  
+Additionally, this project allows for graph generation through two methods:
+1. **File-based input:** Load graphs from a file.
+2. **Random graph generation:** Generate graphs of various sizes for testing and illustration purposes.
+  
+Graphs can be visualized for better understanding and analysis using the built-in display functionality.
 
-There are two ways to generate graphs to work with: create a graph from a file or generate random graphs of different sizes. For illustration purposes you can display any of those graphs.
+## Technologies Used
+This project relies on the following libraries:
+- **algs4.jar** - A collection of algorithms from [Princeton's Algorithms, Part I course](https://algs4.cs.princeton.edu/home/).
+- **GraphStream (version 2.0)** - For graph visualization, utilizing core, algorithm, and UI components.
+- **JUnit 4.13.1** - For unit testing and ensuring code reliability.
 
-## Technologies
-The project is created with:
-* algs4.jar (algs4.cs.princeton.edu)
-* Graphstream version: 2.0 (algo, core & ui jar files)
-* JUnit version: 4.13.1
+## Setup Instructions
+To set up the project:
+1. Download the required libraries:  
+    - **algs4.jar:** [Download Link](https://algs4.cs.princeton.edu/home/)
+    - **GraphStream 2.0:** [GraphStream Website](https://graphstream-project.org/)
+    - **JUnit 4.13.1:** Available via [Maven Central](https://mvnrepository.com/artifact/junit/junit/4.13.2).
+2. Add the libraries to your project’s classpath.
+3. You should now be ready to run the algorithms and generate or load graphs for visualization and analysis.
 
-## Setup
-In order to run this project, download the above mentioned libraries and add them to your project structure.
+## Example Usage
+- You can either **load a graph from a file** or **generate a random graph of your choice**.
+- Use the provided graph visualization tools to display and analyze the structure of the graph.
 
+## License
+This project is licensed under the MIT License.
