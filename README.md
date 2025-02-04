@@ -8,7 +8,7 @@ This project implements several fundamental graph algorithms, organized into thr
 2. **Minimum Spanning Tree:**  
   Compute the minimal spanning tree of a graph using **`Kruskal's`** and **`Prim's`** algorithms.
 3. **Eulerian Path:**  
-  Determine an Eulerian path in a graph using **`Fleury's Algorithm`** and **`Hierholzer's Algorithm`**.  
+  Determine a Eulerian path in a graph using **`Fleury's Algorithm`** and **`Hierholzer's Algorithm`**.  
   
 Additionally, this project allows for graph generation through two methods:  
 1. **File-based input:** Load graphs from a file.
