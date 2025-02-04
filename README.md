@@ -1,4 +1,4 @@
-# GraphWorks
+# 🌐 GraphWorks 
 
 ## Overview
 This project implements several fundamental graph algorithms, organized into three categories:
