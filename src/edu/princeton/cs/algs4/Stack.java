@@ -24,6 +24,29 @@ package edu.princeton.cs.algs4;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+
+/**
+ *  The {@code Stack} class represents a last-in-first-out (LIFO) stack of generic items.
+ *  It supports the usual <em>push</em> and <em>pop</em> operations, along with methods
+ *  for peeking at the top item, testing if the stack is empty, and iterating through
+ *  the items in LIFO order.
+ *  <p>
+ *  This implementation uses a singly linked list with a static nested class for
+ *  linked-list nodes. See {@link LinkedStack} for the version from the
+ *  textbook that uses a non-static nested class.
+ *  See {@link ResizingArrayStack} for a version that uses a resizing array.
+ *  The <em>push</em>, <em>pop</em>, <em>peek</em>, <em>size</em>, and <em>is-empty</em>
+ *  operations all take constant time in the worst case.
+ *  <p>
+ *  For additional documentation,
+ *  see <a href="https://algs4.cs.princeton.edu/13stacks">Section 1.3</a> of
+ *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
+ *  @author Robert Sedgewick
+ *  @author Kevin Wayne
+ *
+ *  @param <Item> the generic type each item in this stack
+ */
 public class Stack<Item> implements Iterable<Item> {
     private Node<Item> first;     // top of stack
     private int n;                // size of the stack
