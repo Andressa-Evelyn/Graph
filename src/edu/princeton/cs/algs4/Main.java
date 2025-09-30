@@ -5,19 +5,20 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-
+        // Caminho da pasta de dados
         File pasta = new File("data");
         if (!pasta.exists() || !pasta.isDirectory()) {
             System.err.println("Pasta 'data' não encontrada.");
             System.exit(1);
         }
 
-
+        // Lista todos os arquivos .txt em ordem alfabética
         File[] arquivos = pasta.listFiles((dir, name) -> name.endsWith(".txt"));
         if (arquivos == null || arquivos.length == 0) {
             System.err.println("Nenhum arquivo .txt encontrado em data/");
             System.exit(1);
         }
+        java.util.Arrays.sort(arquivos);
 
         for (File f : arquivos) {
             System.out.println(">>> Arquivo: " + f.getName());
@@ -28,24 +29,40 @@ public class Main {
                 continue;
             }
 
-            if (!EulerUtils.allDegreesEven(G)) {
+            int odd = 0;
+            for (int v = 0; v < G.V(); v++) if ((G.degree(v) & 1) == 1) odd++;
+
+            if (odd != 0) {
                 System.out.println("Não euleriano: existem vértices com grau ímpar.\n");
                 continue;
             }
 
+            // -------- Hierholzer --------
             Hierholzer h = new Hierholzer(G);
-            List<Integer> circuit = h.findCircuit(0);
-            if (circuit == null || circuit.isEmpty()) {
-                System.out.println("Não foi possível construir o circuito.\n");
-                continue;
+            List<Integer> circuitH = h.findCircuit(0);
+            if (circuitH == null || circuitH.isEmpty()) {
+                System.out.println("Hierholzer: não foi possível construir o circuito.");
+            } else {
+                System.out.println("Hierholzer: " + joinList(circuitH));
             }
 
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < circuit.size(); i++) {
-                if (i > 0) sb.append(' ');
-                sb.append(circuit.get(i));
+            // -------- Fleury --------
+            Fleury fAlg = new Fleury(G);
+            List<Integer> circuitF = fAlg.find();
+            if (circuitF == null || circuitF.isEmpty()) {
+                System.out.println("Fleury: não foi possível construir o circuito.\n");
+            } else {
+                System.out.println("Fleury:     " + joinList(circuitF) + "\n");
             }
-            System.out.println(sb.toString() + "\n");
         }
+    }
+
+    private static String joinList(List<Integer> list) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < list.size(); i++) {
+            if (i > 0) sb.append(' ');
+            sb.append(list.get(i));
+        }
+        return sb.toString();
     }
 }

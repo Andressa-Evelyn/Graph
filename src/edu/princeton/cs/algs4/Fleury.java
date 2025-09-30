@@ -21,18 +21,18 @@ public class Fleury {
     private String eulerianType() {
         int odd = 0;
         for (int v = 0; v < G.V(); v++) if ((G.degree(v) & 1) == 1) odd++;
-        if (odd == 0) return "circuito";
-        if (odd == 2) return "trilha";
+        if (odd == 0) return "circuito"; // não tenho vértice com grau impar
+        if (odd == 2) return "trilha"; // tenho exatamento dois vértices com grau impar
         return null;
     }
 
     public List<Integer> find() {
         String type = eulerianType();
         if (type == null) return null;
-        if (!EulerUtils.isConnectedIgnoreIsolated(G)) return null;
+        if (!EulerUtils.isConnectedIgnoreIsolated(G)) return null; // Se todos os vértices com grau positivo foram visitados, o grafo é conexo ignorando os isolados.
 
         int V = G.V();
-        // cópia mutável de adjacências
+        // cópia mutável de adjacências de cada vértice
         List<LinkedList<Integer>> adj = new ArrayList<>(V);
         for (int v = 0; v < V; v++) {
             LinkedList<Integer> list = new LinkedList<>();
@@ -42,25 +42,25 @@ public class Fleury {
 
         int start = 0;
         if ("trilha".equals(type)) {
-            // começa em um vértice de grau ímpar
+            // começa em um vértice de grau ímpar. pois ela começa e termina em impar
             for (int v = 0; v < V; v++) if ((G.degree(v) & 1) == 1) { start = v; break; }
         }
 
-        List<Integer> path = new ArrayList<>();
-        int u = start;
+        List<Integer> path = new ArrayList<>(); //sequência de vértices visitados
+        int u = start; // partida. se for trilha o start é impar. se for circuito o start é par
         path.add(u);
 
         while (hasEdges(adj)) {
             boolean moved = false;
             // iterar sobre cópia da lista porque poderemos modificar adj[u]
             for (int v : new ArrayList<>(adj.get(u))) {
-                if (isValidNextEdge(u, v, adj)) {
+                if (isValidNextEdge(u, v, adj)) { //valido -> se tiro, não quebra a conectividade
                     // atravessa u-v
                     removeEdge(u, v, adj);
-                    u = v;
-                    path.add(u);
+                    u = v; //avança pro próximo vértice
+                    path.add(u); //adiciona novo vértice a trilha
                     moved = true;
-                    break;
+                    break; // sai do for após achar saída válida
                 }
             }
             if (!moved) {
@@ -72,7 +72,7 @@ public class Fleury {
     }
 
     private boolean hasEdges(List<LinkedList<Integer>> adj) {
-        for (LinkedList<Integer> l : adj) if (!l.isEmpty()) return true;
+        for (LinkedList<Integer> l : adj) if (!l.isEmpty()) return true; //se a lista de adj não for vazia, então há arestas
         return false;
     }
 
@@ -87,12 +87,12 @@ public class Fleury {
         stack.push(s);
         visited[s] = true;
         int count = 1;
-        while (!stack.isEmpty()) {
-            int u = stack.pop();
+        while (!stack.isEmpty()) { //enquanto houver vértices, continua a busca
+            int u = stack.pop(); // remove o vértice e adiciona em u
             for (int v : localAdj.get(u)) {
-                if (!visited[v]) {
+                if (!visited[v]) { // se o vértice não foi visitado
                     visited[v] = true;
-                    count++;
+                    count++; // contador de vértices alcançados
                     stack.push(v);
                 }
             }
@@ -105,13 +105,14 @@ public class Fleury {
         if (adj.get(u).size() == 1) return true;
 
         int V = adj.size();
-        // conta alcançáveis antes
+        // conta alcançáveis antes de remover
         boolean[] visited1 = new boolean[V];
         int count1 = dfsCount(u, visited1, adj);
 
         // remove temporariamente
         removeEdge(u, v, adj);
 
+        // conta alcançáveis depois de remover
         boolean[] visited2 = new boolean[V];
         int count2 = dfsCount(u, visited2, adj);
 
