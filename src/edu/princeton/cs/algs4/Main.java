@@ -1,55 +1,51 @@
 package edu.princeton.cs.algs4;
 
+import java.io.File;
 import java.util.List;
 
-/**
- * Leitura em formato algs4 (arquivo com V E e E pares) usando Graph da algs4.
- * Se você não tem algs4, altere a leitura para a sua Graph.fromTxt.
- *
- * Execução:
- *   java EulerMain data/c4.txt
- *
- * Saída:
- *   Se circuito: linha única com vértices separados por espaço.
- *   Caso contrário: mensagem apropriada.
- */
 public class Main {
     public static void main(String[] args) {
-        if (args.length == 0) {
-            System.err.println("Uso: java EulerMain <arquivo_grafo.txt>");
+
+        File pasta = new File("data");
+        if (!pasta.exists() || !pasta.isDirectory()) {
+            System.err.println("Pasta 'data' não encontrada.");
             System.exit(1);
         }
 
-        // requer algs4 Graph / In:
-        Graph G = new Graph(new In(args[0])); // se usar algs4
-        // se tiver Graph.fromTxt adaptado, substitua acima.
 
-        if (!EulerUtils.isConnectedIgnoreIsolated(G)) {
-            System.out.println("Desconexo (ignorando isolados).");
-            return;
+        File[] arquivos = pasta.listFiles((dir, name) -> name.endsWith(".txt"));
+        if (arquivos == null || arquivos.length == 0) {
+            System.err.println("Nenhum arquivo .txt encontrado em data/");
+            System.exit(1);
         }
 
-        int odd = 0;
-        for (int v = 0; v < G.V(); v++) if ((G.degree(v) & 1) == 1) odd++;
+        for (File f : arquivos) {
+            System.out.println(">>> Arquivo: " + f.getName());
+            Graph G = new Graph(new In(f.getPath()));
 
-        if (odd != 0) {
-            System.out.println("Não euleriano: existem vértices com grau ímpar.");
-            return;
-        }
+            if (!EulerUtils.isConnectedIgnoreIsolated(G)) {
+                System.out.println("Desconexo (ignorando isolados).\n");
+                continue;
+            }
 
-        Hierholzer h = new Hierholzer(G);
-        List<Integer> circuit = h.findCircuit(0);
-        if (circuit == null || circuit.isEmpty()) {
-            System.out.println("Não foi possível construir o circuito.");
-            return;
-        }
+            if (!EulerUtils.allDegreesEven(G)) {
+                System.out.println("Não euleriano: existem vértices com grau ímpar.\n");
+                continue;
+            }
 
-        // imprime em uma linha
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < circuit.size(); i++) {
-            if (i > 0) sb.append(' ');
-            sb.append(circuit.get(i));
+            Hierholzer h = new Hierholzer(G);
+            List<Integer> circuit = h.findCircuit(0);
+            if (circuit == null || circuit.isEmpty()) {
+                System.out.println("Não foi possível construir o circuito.\n");
+                continue;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < circuit.size(); i++) {
+                if (i > 0) sb.append(' ');
+                sb.append(circuit.get(i));
+            }
+            System.out.println(sb.toString() + "\n");
         }
-        System.out.println(sb.toString());
     }
 }
