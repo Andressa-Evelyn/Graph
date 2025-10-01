@@ -21,14 +21,14 @@ public class Hierholzer {
     }
 
     public List<Integer> findCircuit(int start) {
-        // pré-condições
-        if (!EulerUtils.isConnectedIgnoreIsolated(G) || !EulerUtils.allDegreesEven(G)) { // se tá não conectado e não tem grau par em todos os vértices
+
+        if (!EulerUtils.isConnectedIgnoreIsolated(G) || !EulerUtils.allDegreesEven(G)) {
             return null;
         }
 
         int V = G.V();
 
-        // cópia mutável: LinkedList por vértice
+
         List<LinkedList<Integer>> adj = new ArrayList<>(V);
         for (int v = 0; v < V; v++) {
             LinkedList<Integer> list = new LinkedList<>();
@@ -36,26 +36,21 @@ public class Hierholzer {
             adj.add(list);
         }
 
-        Stack<Integer> stack = new Stack<>(); //pilha para armazenar os vértices durante a exploração do circuito.
-        List<Integer> circuit = new ArrayList<>(); //lista para armazenar o circuito euleriano final.
+        Stack<Integer> stack = new Stack<>();
+        List<Integer> circuit = new ArrayList<>();
         stack.push(start);
 
         while (!stack.isEmpty()) {
-            int v = stack.peek(); //Olha o vértice no topo da pilha sem removê-lo.
-            if (!adj.get(v).isEmpty()) { //verifica se ele tem vizinhos
-                int u = adj.get(v).removeFirst(); // pega vizinho
-                // remove a aresta reversa u -> v
+            int v = stack.peek();
+            if (!adj.get(v).isEmpty()) {
+                int u = adj.get(v).removeFirst();
                 adj.get(u).removeFirstOccurrence(v);
-                stack.push(u); //Empurra o vizinho u na pilha para continuar a exploração a partir dele.
+                stack.push(u);
             } else {
-                circuit.add(stack.pop()); //Se o vértice atual não tem mais vizinhos, ele é removido da pilha e adicionado ao circuito.
+                circuit.add(stack.pop());
             }
         }
 
-        // circuito está em ordem reversa (construído do fim para o início)
-        // aqui já está na ordem de percurso (circuit foi preenchido do último ao primeiro),
-        // mas como adicionamos ao final a cada pop, a lista resultante está do final para o início.
-        // portanto invertê-la:
         java.util.Collections.reverse(circuit);
         return circuit;
     }

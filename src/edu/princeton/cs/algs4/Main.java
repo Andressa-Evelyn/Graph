@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Caminho da pasta de dados
+
         File pasta = new File("data");
         if (!pasta.exists() || !pasta.isDirectory()) {
             System.err.println("Pasta 'data' não encontrada.");
             System.exit(1);
         }
 
-        // Lista todos os arquivos .txt em ordem alfabética
+
         File[] arquivos = pasta.listFiles((dir, name) -> name.endsWith(".txt"));
         if (arquivos == null || arquivos.length == 0) {
             System.err.println("Nenhum arquivo .txt encontrado em data/");
@@ -33,7 +33,7 @@ public class Main {
             for (int v = 0; v < G.V(); v++) if ((G.degree(v) & 1) == 1) odd++;
 
             if (odd != 0) {
-                System.out.println("Não euleriano: existem vértices com grau ímpar.\n");
+                System.out.println("Não é um ciclo euleriano: existem vértices com grau ímpar.\n");
                 continue;
             }
 

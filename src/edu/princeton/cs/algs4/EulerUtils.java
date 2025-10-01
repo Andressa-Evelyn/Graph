@@ -15,7 +15,7 @@ public final class EulerUtils {
         int V = G.V();
         boolean[] visited = new boolean[V];
 
-        // encontra vértice com grau > 0
+
         int start = -1;
         for (int v = 0; v < V; v++) {
             if (G.degree(v) > 0) {
@@ -24,11 +24,10 @@ public final class EulerUtils {
             }
         }
         if (start == -1) {
-            // sem arestas -> considerado conectado para nossos propósitos
             return true;
         }
 
-        // BFS/DFS iterativo
+
         Deque<Integer> stack = new ArrayDeque<>();
         stack.push(start);
         visited[start] = true;
