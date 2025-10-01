@@ -22,11 +22,12 @@ public class Hierholzer {
 
     public List<Integer> findCircuit(int start) {
         // pré-condições
-        if (!EulerUtils.isConnectedIgnoreIsolated(G) || !EulerUtils.allDegreesEven(G)) {
+        if (!EulerUtils.isConnectedIgnoreIsolated(G) || !EulerUtils.allDegreesEven(G)) { // se tá não conectado e não tem grau par em todos os vértices
             return null;
         }
 
         int V = G.V();
+
         // cópia mutável: LinkedList por vértice
         List<LinkedList<Integer>> adj = new ArrayList<>(V);
         for (int v = 0; v < V; v++) {
@@ -35,19 +36,19 @@ public class Hierholzer {
             adj.add(list);
         }
 
-        Stack<Integer> stack = new Stack<>();
-        List<Integer> circuit = new ArrayList<>();
+        Stack<Integer> stack = new Stack<>(); //pilha para armazenar os vértices durante a exploração do circuito.
+        List<Integer> circuit = new ArrayList<>(); //lista para armazenar o circuito euleriano final.
         stack.push(start);
 
         while (!stack.isEmpty()) {
-            int v = stack.peek();
-            if (!adj.get(v).isEmpty()) {
+            int v = stack.peek(); //Olha o vértice no topo da pilha sem removê-lo.
+            if (!adj.get(v).isEmpty()) { //verifica se ele tem vizinhos
                 int u = adj.get(v).removeFirst(); // pega vizinho
                 // remove a aresta reversa u -> v
                 adj.get(u).removeFirstOccurrence(v);
-                stack.push(u);
+                stack.push(u); //Empurra o vizinho u na pilha para continuar a exploração a partir dele.
             } else {
-                circuit.add(stack.pop());
+                circuit.add(stack.pop()); //Se o vértice atual não tem mais vizinhos, ele é removido da pilha e adicionado ao circuito.
             }
         }
 
